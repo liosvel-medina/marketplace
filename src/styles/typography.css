@@ -13,7 +13,11 @@
         @apply text-gray-500;
     }
 
-    .text-h1 {
+    .title-h1 {
         @apply text-5xl font-semibold leading-normal tracking-[-1.6px];
+    }
+
+    .title-h6 {
+        @apply text-base font-semibold;
     }
 }
