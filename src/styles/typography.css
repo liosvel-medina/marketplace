@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+        @apply text-dark font-sans font-normal text-base not-italic leading-6 tracking-[-0.2px];
+    }
+}
+
+@layer components {
+    .text-muted {
+        @apply text-gray-500;
+    }
+
+    .text-h1 {
+        @apply text-5xl font-semibold leading-normal tracking-[-1.6px];
+    }
+}
