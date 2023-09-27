@@ -9,6 +9,6 @@
 
 <style scoped lang="scss">
 .card {
-  @apply bg-white border-[1px] border-gray-300 rounded-md p-3;
+  @apply bg-white border-[1px] border-gray-300 rounded-md;
 }
 </style>
