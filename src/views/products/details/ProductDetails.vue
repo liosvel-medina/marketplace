@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { useProductDetails } from "./useProductDetails";
 
-const { isLoading, product } = useProductDetails();
+const { isLoading, product, similarProducts } = useProductDetails();
 
 import Loader from "../../../components/shared/loader/Loader.vue";
 import Card from "../../../components/shared/card/Card.vue";
+import ProductTile from "../../../components/products/product-tile/ProductTile.vue";
 </script>
 
 <template>
@@ -24,7 +25,7 @@ import Card from "../../../components/shared/card/Card.vue";
         />
       </div>
 
-      <div class="flex flex-col p-4 border-b-[1px] border-b-gray-300">
+      <div class="flex flex-col p-4 border-b-[1px] bg-white border-b-gray-300">
         <div class="flex gap-[10px] items-center">
           <img src="../../../assets/rate-placeholder.svg" alt="rate bar" />
           <img src="../../../assets/dot.svg" alt="rate bar" />
@@ -149,6 +150,21 @@ import Card from "../../../components/shared/card/Card.vue";
           </div>
         </div>
       </Card>
+
+      <h2 class="title-h5 m-[10px]">Similar products</h2>
+
+      <div class="my-[10px] overflow-auto">
+        <div class="flex gap-2 w-fit mx-[10px]">
+          <ProductTile
+            :id="item.id"
+            :name="item.title"
+            :image="item.image"
+            :price="item.price"
+            v-for="item of similarProducts"
+            :key="item.id"
+          />
+        </div>
+      </div>
     </div>
   </div>
 </template>
