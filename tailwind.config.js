@@ -8,6 +8,7 @@ export default {
     colors: {
       'black': '#000000',
       'white': '#ffffff',
+      'transparent': 'rgba(0,0,0,0)',
       'dark': '#1C1C1C',
       'gray-600': '#505050',
       'gray-500': '#8B96A5',
