@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useProductDetails } from "./useProductDetails";
+import RateBar from "../../../components/shared/rate-bar/RateBar.vue";
 
 const { isLoading, product, similarProducts } = useProductDetails();
 
@@ -27,7 +28,8 @@ import ProductTile from "../../../components/products/product-tile/ProductTile.v
 
       <div class="flex flex-col p-4 border-b-[1px] bg-white border-b-gray-300">
         <div class="flex gap-[10px] items-center">
-          <img src="../../../assets/rate-placeholder.svg" alt="rate bar" />
+          <RateBar :rate="product?.rating.rate || 0" />
+
           <img src="../../../assets/dot.svg" alt="rate bar" />
 
           <div class="flex gap-[6px] items-center">

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { RouterLink } from "vue-router";
 import Card from "../../shared/card/Card.vue";
+import RateBar from "../../shared/rate-bar/RateBar.vue";
 
 interface Props {
   id: number;
@@ -31,7 +32,8 @@ const { name, price, image, rating, count } = defineProps<Props>();
         <span class="title-h6">${{ price.toFixed(2) }}</span>
 
         <div class="flex flex-row gap-2 items-center">
-          <img src="../../../assets/rate-placeholder.svg" alt="rate bar" />
+          <RateBar :rate="rating || 0" />
+          
           <span class="text-orange text-[13px]">{{ rating }}</span>
 
           <img src="../../../assets/dot.svg" alt="" />
