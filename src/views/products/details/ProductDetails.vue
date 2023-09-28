@@ -2,7 +2,8 @@
 import { useProductDetails } from "./useProductDetails";
 import RateBar from "../../../components/shared/rate-bar/RateBar.vue";
 
-const { isLoading, product, similarProducts } = useProductDetails();
+const { isLoading, product, similarProducts, favImage, toggleFavorite } =
+  useProductDetails();
 
 import Loader from "../../../components/shared/loader/Loader.vue";
 import Card from "../../../components/shared/card/Card.vue";
@@ -66,8 +67,9 @@ import ProductTile from "../../../components/products/product-tile/ProductTile.v
           </button>
           <button
             class="flex items-center justify-center w-10 h-10 border-[1px] border-gray-300 rounded-md"
+            @click="toggleFavorite"
           >
-            <i class="material-icons-outlined text-primary">favorite_border</i>
+            <i class="material-icons-outlined text-primary">{{ favImage() }}</i>
           </button>
         </div>
 

@@ -1,7 +1,8 @@
 import { useRoute, onBeforeRouteUpdate } from "vue-router"
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import { Product } from "../../../api/interfaces";
 import api from '../../../api/fakeStoreApi'
+import { useProductStore } from "../../../store/productStore";
 
 export const useProductDetails = () => {
     const route = useRoute()
@@ -9,6 +10,22 @@ export const useProductDetails = () => {
     const isLoading = ref(false)
     const product = ref<Product>()
     const similarProducts = ref<Product[]>([])
+
+    const productStore = useProductStore();
+
+    const isFavorite = () => {
+        return productStore.favorites.includes(product?.value?.id || 0)
+    }
+
+    const toggleFavorite = () => {
+        if (isFavorite()) productStore.removeFavorite(product.value?.id || 0)
+        else productStore.addFavorite(product.value?.id || 0)
+    }
+
+    const favImage = () => {
+        if (isFavorite()) return 'favorite'
+        return 'favorite_border'
+    }
 
     const loadSimilarProducts = async (category: string) => {
         try {
@@ -46,5 +63,5 @@ export const useProductDetails = () => {
         }
     })
 
-    return { isLoading, product, similarProducts }
+    return { isLoading, product, similarProducts, favImage, toggleFavorite }
 }
