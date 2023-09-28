@@ -13,7 +13,7 @@ export const useProductDetails = () => {
     const loadSimilarProducts = async (category: string) => {
         try {
             const res = await api.get<Product[]>(`products/category/${category}`)
-            similarProducts.value = res.data
+            similarProducts.value = res.data.filter((item) => { return item.id != product?.value?.id })
         } catch (ex) {
             console.error(ex);
         }
