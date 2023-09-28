@@ -7,7 +7,13 @@ import { RouterLink } from "vue-router";
 
   <ul>
     <li>
-      <RouterLink :to="{ name: 'ProductList' }">Product List</RouterLink>
+      <RouterLink
+        :to="{ name: 'ProductList' }"
+        class="flex items-center gap-2 text-primary"
+      >
+        <i class="material-icons-outlined">link</i>
+        <span> Product List</span>
+      </RouterLink>
     </li>
   </ul>
 </template>
