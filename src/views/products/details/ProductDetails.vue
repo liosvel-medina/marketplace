@@ -128,7 +128,26 @@ import Card from "../../../components/shared/card/Card.vue";
 
         <div class="w-full h-px bg-gray-300"></div>
 
-        <div class="flex items-center justify-between"></div>
+        <div class="flex items-center justify-between text-gray-600">
+          <div class="flex gap-[7px] items-center">
+            <img
+              src="../../../assets/images/flags/de.png"
+              alt="DE"
+              class="w-5 h-[14px]"
+            />
+            <span>Germany</span>
+          </div>
+
+          <div class="flex gap-[7px] items-center">
+            <i class="material-icons-outlined text-gray-500">verified_user</i>
+            <span>Verified</span>
+          </div>
+
+          <div class="flex gap-[7px] items-center">
+            <i class="material-icons-outlined text-gray-500">language</i>
+            <span>Shipping</span>
+          </div>
+        </div>
       </Card>
     </div>
   </div>
