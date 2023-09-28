@@ -5,6 +5,7 @@ import api from '../../../api/fakeStoreApi'
 export const useProductList = () => {
     const isLoading = ref(false)
     const products = ref<Product[]>([])
+    const categories = ref<string[]>([])
 
     const loadProducts = async () => {
         isLoading.value = true
@@ -19,9 +20,23 @@ export const useProductList = () => {
         isLoading.value = false
     }
 
+    const loadCategories = async () => {
+        isLoading.value = true
+
+        try {
+            const res = await api.get<string[]>('products/categories')
+            categories.value = res.data
+        } catch (ex) {
+            console.error(ex);
+        }
+
+        isLoading.value = false
+    }
+
     onMounted(() => {
         loadProducts()
+        loadCategories()
     })
 
-    return { isLoading, products, loadProducts }
+    return { isLoading, products, categories }
 }
