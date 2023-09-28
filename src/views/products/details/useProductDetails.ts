@@ -4,7 +4,7 @@ import { Product } from "../../../api/interfaces";
 import api from '../../../api/fakeStoreApi'
 
 export const useProductDetails = () => {
-    const { params } = useRoute()
+    const route = useRoute()
 
     const isLoading = ref(false)
     const product = ref<Product>()
@@ -25,7 +25,7 @@ export const useProductDetails = () => {
     }
 
     onMounted(() => {
-        loadProduct(params['id'])
+        loadProduct(Number(route.params.id))
     })
 
     return { isLoading, product }
