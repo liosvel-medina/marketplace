@@ -12,7 +12,7 @@ defineProps({
 
 <style scoped lang="scss">
 .card {
-  @apply bg-white border-[1px] border-gray-300 rounded-md;
+  @apply bg-white border-[1px] border-gray-300 rounded-md overflow-hidden;
 }
 
 .card.interactive {
