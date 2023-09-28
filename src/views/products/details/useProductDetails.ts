@@ -1,5 +1,5 @@
 import { useRoute, onBeforeRouteUpdate } from "vue-router"
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted } from 'vue'
 import { Product } from "../../../api/interfaces";
 import api from '../../../api/fakeStoreApi'
 import { useProductStore } from "../../../store/productStore";
