@@ -1,20 +1,32 @@
 <script lang="ts" setup>
-const props = defineProps({
+defineProps({
   size: { type: String, default: "32px" },
   margin: { type: String, default: "10px 0" },
-  height: { type: String, default: "100px" },
+  height: { type: String, default: "unset" },
+  elevated: { type: Boolean, default: false },
 });
 </script>
 
 <template>
-  <div class="sp-loader" :style.margin="margin" :style.height="height">
+  <div
+    class="sp-loader"
+    :class="{ elevated: elevated }"
+    :style="{ margin: margin, height: height }"
+  >
     <div class="sp-dual-ring"></div>
   </div>
 </template>
 
 <style scoped>
 .sp-loader {
-  @apply w-full text-center flex justify-center items-center pb-[25px] grid-cols-[1/-1];
+  @apply text-center 
+  flex 
+  justify-center
+   items-center 
+   grid-cols-[1/-1]
+   p-3
+   rounded-full
+   bg-white;
   /* width: 100%;
 	text-align: center;
 	display: flex;
@@ -39,5 +51,9 @@ const props = defineProps({
   after:border-r-primary
   after:animate-spin;
   /* display: inline-block; */
+}
+
+.sp-loader.elevated {
+  @apply shadow-xl;
 }
 </style>
