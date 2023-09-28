@@ -9,9 +9,6 @@ import { RouterLink } from "vue-router";
     <li>
       <RouterLink :to="{ name: 'ProductList' }">Product List</RouterLink>
     </li>
-    <li>
-      <RouterLink :to="{ name: 'ProductDetails' }">Product Details</RouterLink>
-    </li>
   </ul>
 </template>
 

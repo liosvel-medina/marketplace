@@ -19,7 +19,7 @@ const router = createRouter({
                     name: 'ProductList'
                 },
                 {
-                    path: 'web-detail',
+                    path: 'web-detail/:id',
                     component: () => import('../views/products/details/ProductDetails.vue'),
                     name: 'ProductDetails'
                 },

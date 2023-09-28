@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import { RouterLink } from "vue-router";
 import Card from "../../shared/card/Card.vue";
 
 interface Props {
+  id: number;
   name: string;
   price: number;
   image?: string;
@@ -13,8 +15,11 @@ const { name, price, image, rating, count } = defineProps<Props>();
 </script>
 
 <template>
-  <Card>
-    <div class="flex flex-row gap-3 pt-3 px-[14px] pb-[14px]">
+  <Card :is-interactive="true">
+    <RouterLink
+      :to="{ name: 'ProductDetails', params: { id: id } }"
+      class="flex flex-row gap-3 pt-3 px-[14px] pb-[14px]"
+    >
       <img
         :src="image"
         alt="pic"
@@ -35,7 +40,7 @@ const { name, price, image, rating, count } = defineProps<Props>();
         </div>
         <span class="text-green text-[13px]">Free Shipping</span>
       </div>
-    </div>
+    </RouterLink>
   </Card>
 </template>
 

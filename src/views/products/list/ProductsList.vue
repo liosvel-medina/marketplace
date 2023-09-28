@@ -15,6 +15,7 @@ const { products, isLoading } = useProductList();
     />
 
     <ProductCard
+      :id="item.id"
       :name="item.title"
       :price="item.price"
       :image="item.image"
