@@ -10,7 +10,7 @@ defineEmits(["goBack"]);
 
 <template>
   <div
-    class="fixed top-0 left-0 z-30 flex items-center w-full h-14 px-4 bg-white"
+    class="fixed top-0 left-0 z-30 flex items-center w-full h-14 px-3 bg-white"
   >
     <button
       class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-gray-200"
