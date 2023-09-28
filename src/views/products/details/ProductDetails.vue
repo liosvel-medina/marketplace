@@ -157,7 +157,7 @@ import ProductTile from "../../../components/products/product-tile/ProductTile.v
 
       <h2 class="title-h5 m-[10px]">Similar products</h2>
 
-      <div class="my-[10px] overflow-auto">
+      <div class="my-[10px] overflow-auto no-scrollbar">
         <div class="flex gap-2 w-fit mx-[10px]">
           <ProductTile
             :id="item.id"
