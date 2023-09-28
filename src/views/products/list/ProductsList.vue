@@ -7,7 +7,7 @@ const { products, isLoading } = useProductList();
 </script>
 
 <template>
-  <div class="relative flex flex-col gap-3 p-3">
+  <div class="relative flex flex-col gap-3 p-3 bg-gray-100">
     <Loader
       class="fixed left-1/2 translate-x-[-50%]"
       :elevated="true"
