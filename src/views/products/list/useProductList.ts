@@ -6,6 +6,7 @@ export const useProductList = () => {
     const isLoading = ref(false)
     const products = ref<Product[]>([])
     const categories = ref<string[]>([])
+    const filters = ref<string[]>(['huawei', 'apple', '64GB'])
 
     const loadProducts = async () => {
         isLoading.value = true
@@ -38,5 +39,5 @@ export const useProductList = () => {
         loadCategories()
     })
 
-    return { isLoading, products, categories }
+    return { isLoading, products, categories, filters }
 }

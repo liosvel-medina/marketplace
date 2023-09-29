@@ -3,12 +3,15 @@ import { useProductList } from "./useProductList";
 import ProductCard from "../../../components/products/product-card/ProductCard.vue";
 import Loader from "../../../components/shared/loader/Loader.vue";
 import SearchPanel from "./search-panel/SearchPanel.vue";
+import FiltersPanel from "./filters-panel/FiltersPanel.vue";
 
-const { products, isLoading, categories } = useProductList();
+const { products, isLoading, categories, filters } = useProductList();
 </script>
 
 <template>
-  <SearchPanel :categories="categories"/>
+  <SearchPanel :categories="categories" />
+
+  <FiltersPanel :filters="filters"/>
 
   <div class="relative flex flex-col gap-3 p-3 bg-gray-100">
     <Loader
