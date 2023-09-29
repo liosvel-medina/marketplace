@@ -7,7 +7,7 @@ defineProps<Props>();
 </script>
 
 <template>
-  <div class="flex flex-col gap-[10px] bg-gray-100">
+  <div class="flex flex-col gap-[10px]">
     <div
       class="flex gap-[6px] items-center w-full h-[50px] px-[11px] bg-white border-b-[1px] border-b-gray-300"
     >
