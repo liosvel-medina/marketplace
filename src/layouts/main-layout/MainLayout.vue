@@ -10,7 +10,9 @@ const { title, onGoBackClick } = useMainLayout();
   <div class="relative flex flex-col w-full h-screen bg-gray-100">
     <MobileTopBar :title="title" @go-back="onGoBackClick" />
     <div class="fixed top-14 left-0 w-full h-[calc(100vh-56px)] overflow-auto">
-      <RouterView></RouterView>
+      <div class="container mx-auto">
+        <RouterView></RouterView>
+      </div>
     </div>
   </div>
 </template>
