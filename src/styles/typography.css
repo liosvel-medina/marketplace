@@ -17,6 +17,10 @@
         @apply text-5xl font-semibold leading-normal tracking-[-1.6px];
     }
 
+    .title-h4 {
+        @apply text-xl font-semibold leading-7 tracking-[-0.2px];
+    }
+
     .title-h5 {
         @apply text-lg font-semibold leading-normal;
     }
