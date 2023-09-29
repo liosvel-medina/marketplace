@@ -27,6 +27,7 @@ const { categories } = defineProps<Props>();
         <button
           class="whitespace-nowrap px-4 py-2 rounded-md capitalize text-primary bg-gray-200 hover:bg-gray-300"
           v-for="item of categories"
+          :key="item"
         >
           {{ item }}
         </button>

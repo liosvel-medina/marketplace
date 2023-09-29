@@ -47,6 +47,7 @@ defineProps<Props>();
         <button
           class="flex items-center gap-[9px] h-8 pl-[10px] pr-[6px] rounded-[5px] border-primary border-[1px]"
           v-for="item of filters"
+          :key="item"
         >
           <span class="capitalize whitespace-nowrap">{{ item }}</span>
           <i class="material-icons text-[20px] text-gray-500">close</i>
