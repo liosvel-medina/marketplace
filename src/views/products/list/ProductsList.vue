@@ -1,12 +1,17 @@
 <script setup lang="ts">
 import { useProductList } from "./useProductList";
 import ProductCard from "../../../components/products/product-card/ProductCard.vue";
+import ProductCardExtended from "../../../components/products/product-card/ProductCardExtended.vue";
 import Loader from "../../../components/shared/loader/Loader.vue";
 import SearchPanel from "./search-panel/SearchPanel.vue";
 import FiltersPanel from "./filters-panel/FiltersPanel.vue";
 import ProductTile from "../../../components/products/product-tile/ProductTile.vue";
 
+import { useWindowSize } from "../../../composables/useWindowSize";
+
 const { products, isLoading, categories, filters } = useProductList();
+
+const { screens } = useWindowSize();
 </script>
 
 <template>
@@ -14,23 +19,38 @@ const { products, isLoading, categories, filters } = useProductList();
 
   <FiltersPanel :filters="filters" />
 
-  <div class="relative flex flex-col gap-3 p-3 bg-gray-100">
+  <div class="relative flex flex-col p-3 bg-gray-100">
     <Loader
       class="fixed left-1/2 translate-x-[-50%]"
       :elevated="true"
       v-if="isLoading"
     />
 
-    <ProductCard
-      :id="item.id"
-      :name="item.title"
-      :price="item.price"
-      :image="item.image"
-      :rating="item.rating.rate"
-      :count="item.rating.count"
-      v-for="item of products"
-      :key="item.id"
-    />
+    <div class="flex flex-col gap-3" v-if="screens.xs || screens.sm">
+      <ProductCard
+        :id="item.id"
+        :name="item.title"
+        :price="item.price"
+        :image="item.image"
+        :rating="item.rating.rate"
+        :count="item.rating.count"
+        v-for="item of products"
+        :key="item.id"
+      />
+    </div>
+
+    <div class="flex flex-col gap-3" v-else>
+      <ProductCardExtended
+        :id="item.id"
+        :name="item.title"
+        :price="item.price"
+        :image="item.image"
+        :rating="item.rating.rate"
+        :count="item.rating.count"
+        v-for="item of products"
+        :key="item.id"
+      />
+    </div>
 
     <h2 class="title-h5 mt-[10px]">You may also like</h2>
 
