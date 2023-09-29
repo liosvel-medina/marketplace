@@ -1,19 +1,32 @@
 import { ref, onMounted } from 'vue';
 import type { Product } from '../../../api/interfaces'
 import api from '../../../api/fakeStoreApi'
+import { useProductStore } from '../../../store/productStore';
+
+interface ProductFav {
+    product: Product;
+    isFavorite: boolean;
+}
 
 export const useProductList = () => {
     const isLoading = ref(false)
-    const products = ref<Product[]>([])
+    const products = ref<ProductFav[]>([])
     const categories = ref<string[]>([])
     const filters = ref<string[]>(['huawei', 'apple', '64GB'])
+
+    const productStore = useProductStore()
 
     const loadProducts = async () => {
         isLoading.value = true
 
         try {
             const res = await api.get<Product[]>('products')
-            products.value = res.data
+            products.value = res.data.map((item) => {
+                return {
+                    product: item,
+                    isFavorite: isFavorite(item.id)
+                }
+            })
         } catch (ex) {
             console.error(ex);
         }
@@ -34,10 +47,24 @@ export const useProductList = () => {
         isLoading.value = false
     }
 
+    const favImage = (id: number) => {
+        if (isFavorite(id)) return 'favorite'
+        return 'favorite_border'
+    }
+
+    const isFavorite = (id: number) => {
+        return productStore.favorites.includes(id)
+    }
+
+    const toggleFavorite = (id: number) => {
+        if (isFavorite(id)) productStore.removeFavorite(id)
+        else productStore.addFavorite(id)
+    }
+
     onMounted(() => {
         loadProducts()
         loadCategories()
     })
 
-    return { isLoading, products, categories, filters }
+    return { isLoading, products, categories, filters, toggleFavorite, favImage }
 }
