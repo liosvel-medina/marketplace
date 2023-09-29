@@ -9,7 +9,8 @@ import ProductTile from "../../../components/products/product-tile/ProductTile.v
 
 import { useWindowSize } from "../../../composables/useWindowSize";
 
-const { products, isLoading, categories, filters } = useProductList();
+const { products, isLoading, categories, filters, toggleFavorite, favImage } =
+  useProductList();
 
 const { screens } = useWindowSize();
 </script>
@@ -28,27 +29,30 @@ const { screens } = useWindowSize();
 
     <div class="flex flex-col gap-3" v-if="screens.xs || screens.sm">
       <ProductCard
-        :id="item.id"
-        :name="item.title"
-        :price="item.price"
-        :image="item.image"
-        :rating="item.rating.rate"
-        :count="item.rating.count"
+        :id="item.product.id"
+        :name="item.product.title"
+        :price="item.product.price"
+        :image="item.product.image"
+        :rating="item.product.rating.rate"
+        :count="item.product.rating.count"
         v-for="item of products"
-        :key="item.id"
+        :key="item.product.id"
       />
     </div>
 
     <div class="flex flex-col gap-3" v-else>
       <ProductCardExtended
-        :id="item.id"
-        :name="item.title"
-        :price="item.price"
-        :image="item.image"
-        :rating="item.rating.rate"
-        :count="item.rating.count"
         v-for="item of products"
-        :key="item.id"
+        :key="item.product.id"
+        :id="item.product.id"
+        :name="item.product.title"
+        :price="item.product.price"
+        :image="item.product.image"
+        :rating="item.product.rating.rate"
+        :count="item.product.rating.count"
+        :description="item.product.description"
+        :fav-image="favImage(item.product.id)"
+        @toggle-favorite="toggleFavorite(item.product.id)"
       />
     </div>
 
@@ -57,12 +61,12 @@ const { screens } = useWindowSize();
     <div class="-mx-3 my-[10px] overflow-auto no-scrollbar">
       <div class="flex gap-2 px-3 w-fit">
         <ProductTile
-          :id="item.id"
-          :name="item.title"
-          :image="item.image"
-          :price="item.price"
+          :id="item.product.id"
+          :name="item.product.title"
+          :image="item.product.image"
+          :price="item.product.price"
           v-for="item of products"
-          :key="item.id"
+          :key="item.product.id"
         />
       </div>
     </div>
