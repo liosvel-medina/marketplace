@@ -31,6 +31,17 @@ export const useWindowSize = () => {
         return width.value >= 1536
     })
 
+    const screens = computed(() => {
+        return {
+            xs: xs.value,
+            sm: sm.value,
+            md: md.value,
+            lg: lg.value,
+            xl: xl.value,
+            xxl: xxl.value
+        }
+    })
+
     onMounted(() => {
         handler()
         window.addEventListener('resize', handler)
@@ -40,5 +51,5 @@ export const useWindowSize = () => {
         window.addEventListener('resize', handler)
     })
 
-    return { width, xs, sm, md, lg, xl, xxl }
+    return { width, screens }
 }
