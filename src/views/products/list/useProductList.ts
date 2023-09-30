@@ -1,7 +1,8 @@
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import type { Product } from '../../../api/interfaces'
 import api from '../../../api/fakeStoreApi'
 import { useProductStore } from '../../../store/productStore';
+import { useWindowSize } from '../../../composables/useWindowSize';
 
 interface ProductFav {
     product: Product;
@@ -13,6 +14,11 @@ export const useProductList = () => {
     const products = ref<ProductFav[]>([])
     const categories = ref<string[]>([])
     const filters = ref<string[]>(['huawei', 'apple', '64GB'])
+    const brands = ref<string[]>(['Samsung', 'Apple', 'Huawei', 'Pocco', 'Lenovo'])
+    const features = ref<string[]>(['Metallic', 'Plastic cover', '8GB Ram', 'Super power', 'Large Memory'])
+    const conditions = ref<string[]>(['Any', 'Refurbished', 'Brand new', 'Old items'])
+
+    const selectedCondition = ref<string>('Any')
 
     const productStore = useProductStore()
 
@@ -61,10 +67,28 @@ export const useProductList = () => {
         else productStore.addFavorite(id)
     }
 
+    const { screens } = useWindowSize()
+
+    const isMobile = computed(() => {
+        return screens.value.xs || screens.value.sm
+    })
+
     onMounted(() => {
         loadProducts()
         loadCategories()
     })
 
-    return { isLoading, products, categories, filters, toggleFavorite, favImage }
+    return {
+        isLoading,
+        products,
+        categories,
+        filters,
+        toggleFavorite,
+        favImage,
+        isMobile,
+        brands,
+        features,
+        conditions,
+        selectedCondition
+    }
 }
