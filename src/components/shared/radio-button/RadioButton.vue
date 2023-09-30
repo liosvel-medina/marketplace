@@ -33,7 +33,11 @@ defineEmits(["update"]);
       v-else
     />
 
-    <span v-if="label">{{ label }}</span>
+    <span v-if="label" class="flex-auto">{{ label }}</span>
+
+    <template v-else>
+      <slot/>
+    </template>
   </label>
 </template>
 

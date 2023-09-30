@@ -13,23 +13,15 @@ const emit = defineEmits(["change"]);
 
 const isCheckedModel = ref(isChecked == true);
 
-const onChange = () => {
-  emit("change", isCheckedModel.value);
+const toggle = () => {
+  const newValue = !isCheckedModel.value;
+  isCheckedModel.value = newValue;
+  emit("change", newValue);
 };
 </script>
 
 <template>
-  <label class="flex items-center cursor-pointer">
-    <input
-      type="checkbox"
-      :name="name"
-      :id="fieldId"
-      class="hidden"
-      :checked="isChecked == true"
-      @change="onChange()"
-      v-model="isCheckedModel"
-    />
-
+  <label class="flex items-center cursor-pointer" @click="toggle">
     <img
       src="../../../assets/images/controls/checkbox-checked.svg"
       alt=""
@@ -42,7 +34,11 @@ const onChange = () => {
       v-else
     />
 
-    <span v-if="label">{{ label }}</span>
+    <span v-if="label" class="flex-auto">{{ label }}</span>
+
+    <template v-else>
+      <slot/>
+    </template>
   </label>
 </template>
 
