@@ -8,7 +8,7 @@ interface Props {
 
 const { isExpanded } = defineProps<Props>();
 
-const expanded = ref(isExpanded || true);
+const expanded = ref<boolean>(isExpanded || true);
 
 const icon = computed(() => {
   if (expanded.value) return "expand_less";
