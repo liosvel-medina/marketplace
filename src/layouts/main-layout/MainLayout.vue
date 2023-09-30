@@ -3,8 +3,9 @@ import { RouterView } from "vue-router";
 import MobileTopBar from "./top-bar/MobileTopBar.vue";
 import DesktopTopBar from "./top-bar/DesktopTopBar.vue";
 import { useMainLayout } from "./useMainLayout";
+import Breadcrumbs from "./breadcrumbs/Breadcrumbs.vue";
 
-const { title, onGoBackClick, isMobile, topBarHeight,  categories } =
+const { title, onGoBackClick, isMobile, topBarHeight, categories } =
   useMainLayout();
 </script>
 
@@ -19,6 +20,11 @@ const { title, onGoBackClick, isMobile, topBarHeight,  categories } =
       :style="{ top: topBarHeight, height: `calc(100vh - ${topBarHeight})` }"
     >
       <div class="container mx-auto">
+        <Breadcrumbs
+          :routes="['Home', 'Clothings', 'Men’s wear', 'Summer clothing']"
+          class="mx-5"
+        />
+
         <RouterView></RouterView>
       </div>
     </div>
