@@ -8,6 +8,8 @@ import FiltersPanel from "./filters-panel/FiltersPanel.vue";
 import ProductTile from "../../../components/products/product-tile/ProductTile.vue";
 import Card from "../../../components/shared/card/Card.vue";
 import CheckBox from "../../../components/shared/checkbox/CheckBox.vue";
+import RadioButton from "../../../components/shared/radio-button/RadioButton.vue";
+import CollapsiblePanel from "../../../components/products/collapsible-panel/CollapsiblePanel.vue";
 
 const {
   products,
@@ -17,6 +19,10 @@ const {
   toggleFavorite,
   favImage,
   isMobile,
+  brands,
+  features,
+  conditions,
+  selectedCondition,
 } = useProductList();
 </script>
 
@@ -45,67 +51,159 @@ const {
       />
     </div>
 
-    <div class="flex flex-col px-3" v-else>
-      <Card>
-        <div class="flex items-center w-full h-[62px] pl-[19px] pr-[10px]">
-          <div>
-            12,911 items in <b class="font-semibold">Mobile accessory</b>
+    <div class="relative grid grid-cols-[230px_1fr] gap-4 px-3" v-else>
+      <div class="sticky top-0 flex flex-col w-[230px]">
+        <div class="w-full h-[1px] bg-gray-300"></div>
+        <CollapsiblePanel title="Category">
+          <div class="flex flex-col gap-[17px] mt-[9px]">
+            <a
+              v-for="item of categories"
+              :key="item"
+              href="#"
+              class="capitalize"
+              >{{ item }}</a
+            >
+            <a href="#" class="text-primary">See all</a>
           </div>
+        </CollapsiblePanel>
 
-          <div class="flex-auto"></div>
+        <div class="w-full h-[1px] bg-gray-300 mt-7"></div>
+        <CollapsiblePanel title="Brands">
+          <div class="flex flex-col gap-[17px] mt-[9px]">
+            <CheckBox
+              v-for="item of brands"
+              :key="item"
+              :name="item"
+              :field-id="`checkbox-${item}`"
+              :label="item"
+            />
+            <a href="#" class="text-primary">See all</a>
+          </div>
+        </CollapsiblePanel>
 
-          <CheckBox
-            field-id="verified-checkbox"
-            name="verified"
-            label="Verified only"
+        <div class="w-full h-[1px] bg-gray-300 mt-7"></div>
+        <CollapsiblePanel title="Features">
+          <div class="flex flex-col gap-[17px] mt-[9px]">
+            <CheckBox
+              v-for="item of features"
+              :key="item"
+              :name="item"
+              :field-id="`checkbox-${item}`"
+              :label="item"
+            />
+            <a href="#" class="text-primary">See all</a>
+          </div>
+        </CollapsiblePanel>
+
+        <div class="w-full h-[1px] bg-gray-300 mt-7"></div>
+        <CollapsiblePanel title="Condition">
+          <div class="flex flex-col gap-[17px] mt-[9px]">
+            <RadioButton
+              v-for="item of conditions"
+              :key="item"
+              name="filter-condition"
+              :field-id="`radiobutton-${item}`"
+              :label="item"
+              :selected="selectedCondition == item"
+              @update="selectedCondition = item"
+            />
+            <a href="#" class="text-primary">See all</a>
+          </div>
+        </CollapsiblePanel>
+
+        <div class="w-full h-[1px] bg-gray-300 mt-7"></div>
+        <CollapsiblePanel title="Ratings">
+          <div class="flex flex-col gap-[17px] mt-[9px]">
+            <CheckBox name="rating5" field-id="checkbox-rating5">
+              <img
+                src="../../../assets/images/rate-bar/rate-bar-5.svg"
+                alt=""
+              />
+            </CheckBox>
+            <CheckBox name="rating4" field-id="checkbox-rating4">
+              <img
+                src="../../../assets/images/rate-bar/rate-bar-4.svg"
+                alt=""
+              />
+            </CheckBox>
+            <CheckBox name="rating3" field-id="checkbox-rating3">
+              <img
+                src="../../../assets/images/rate-bar/rate-bar-3.svg"
+                alt=""
+              />
+            </CheckBox>
+            <CheckBox name="rating2" field-id="checkbox-rating2">
+              <img
+                src="../../../assets/images/rate-bar/rate-bar-2.svg"
+                alt=""
+              />
+            </CheckBox>
+          </div>
+        </CollapsiblePanel>
+      </div>
+
+      <div class="flex-auto flex flex-col">
+        <Card>
+          <div class="flex items-center w-full h-[62px] pl-[19px] pr-[10px]">
+            <div>
+              12,911 items in <b class="font-semibold">Mobile accessory</b>
+            </div>
+
+            <div class="flex-auto"></div>
+
+            <CheckBox
+              field-id="verified-checkbox"
+              name="verified"
+              label="Verified only"
+            />
+
+            <select
+              class="w-[172px] h-10 pl-[10px] pr-10 bg-[url('/src/assets/images/icons/ic_caret_down.svg')] bg-no-repeat bg-[calc(100%-8px)_center] outline-none appearance-none cursor-pointer border-gray-300 border-[1px] rounded-md ml-4"
+            >
+              <option value="">Featured</option>
+            </select>
+
+            <div
+              class="flex h-10 ml-[10px] rounded-md border-[1px] border-gray-300 text-xl overflow-hidden"
+            >
+              <button
+                class="flex items-center justify-center h-full w-[38px] border-r-[1px] border-r-gray-300"
+              >
+                <img
+                  src="../../../assets/images/icons/ic_gridview.svg"
+                  alt=""
+                  class="w-7"
+                />
+              </button>
+
+              <button
+                class="flex items-center justify-center h-full w-[38px] border-l-[1px] border-l-gray-300 bg-gray-200"
+              >
+                <img
+                  src="../../../assets/images/icons/ic_listview.svg"
+                  alt=""
+                  class="w-7"
+                />
+              </button>
+            </div>
+          </div>
+        </Card>
+
+        <div class="flex flex-col gap-3 mt-5">
+          <ProductCardExtended
+            v-for="item of products"
+            :key="item.product.id"
+            :id="item.product.id"
+            :name="item.product.title"
+            :price="item.product.price"
+            :image="item.product.image"
+            :rating="item.product.rating.rate"
+            :count="item.product.rating.count"
+            :description="item.product.description"
+            :fav-image="favImage(item.product.id)"
+            @toggle-favorite="toggleFavorite(item.product.id)"
           />
-
-          <select
-            class="w-[172px] h-10 pl-[10px] pr-10 bg-[url('/src/assets/images/icons/ic_caret_down.svg')] bg-no-repeat bg-[calc(100%-8px)_center] outline-none appearance-none cursor-pointer border-gray-300 border-[1px] rounded-md ml-4"
-          >
-            <option value="">Featured</option>
-          </select>
-
-          <div
-            class="flex h-10 ml-[10px] rounded-md border-[1px] border-gray-300 text-xl overflow-hidden"
-          >
-            <button
-              class="flex items-center justify-center h-full w-[38px] border-r-[1px] border-r-gray-300"
-            >
-              <img
-                src="../../../assets/images/icons/ic_gridview.svg"
-                alt=""
-                class="w-7"
-              />
-            </button>
-
-            <button
-              class="flex items-center justify-center h-full w-[38px] border-l-[1px] border-l-gray-300 bg-gray-200"
-            >
-              <img
-                src="../../../assets/images/icons/ic_listview.svg"
-                alt=""
-                class="w-7"
-              />
-            </button>
-          </div>
         </div>
-      </Card>
-
-      <div class="flex flex-col gap-3 mt-5">
-        <ProductCardExtended
-          v-for="item of products"
-          :key="item.product.id"
-          :id="item.product.id"
-          :name="item.product.title"
-          :price="item.product.price"
-          :image="item.product.image"
-          :rating="item.product.rating.rate"
-          :count="item.product.rating.count"
-          :description="item.product.description"
-          :fav-image="favImage(item.product.id)"
-          @toggle-favorite="toggleFavorite(item.product.id)"
-        />
       </div>
     </div>
 

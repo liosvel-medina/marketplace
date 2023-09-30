@@ -14,6 +14,11 @@ export const useProductList = () => {
     const products = ref<ProductFav[]>([])
     const categories = ref<string[]>([])
     const filters = ref<string[]>(['huawei', 'apple', '64GB'])
+    const brands = ref<string[]>(['Samsung', 'Apple', 'Huawei', 'Pocco', 'Lenovo'])
+    const features = ref<string[]>(['Metallic', 'Plastic cover', '8GB Ram', 'Super power', 'Large Memory'])
+    const conditions = ref<string[]>(['Any', 'Refurbished', 'Brand new', 'Old items'])
+
+    const selectedCondition = ref<string>('Any')
 
     const productStore = useProductStore()
 
@@ -73,5 +78,17 @@ export const useProductList = () => {
         loadCategories()
     })
 
-    return { isLoading, products, categories, filters, toggleFavorite, favImage, isMobile }
+    return {
+        isLoading,
+        products,
+        categories,
+        filters,
+        toggleFavorite,
+        favImage,
+        isMobile,
+        brands,
+        features,
+        conditions,
+        selectedCondition
+    }
 }
