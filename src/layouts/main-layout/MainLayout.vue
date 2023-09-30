@@ -22,7 +22,7 @@ const { title, onGoBackClick, isMobile, topBarHeight, categories } =
       <div class="container mx-auto">
         <Breadcrumbs
           :routes="['Home', 'Clothings', 'Men’s wear', 'Summer clothing']"
-          class="px-5"
+          class="px-3"
           v-if="!isMobile"
         />
 
