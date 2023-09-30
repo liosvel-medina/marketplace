@@ -1,15 +1,23 @@
 <script setup lang="ts">
 import { RouterView } from "vue-router";
 import MobileTopBar from "./top-bar/MobileTopBar.vue";
+import DesktopTopBar from "./top-bar/DesktopTopBar.vue";
 import { useMainLayout } from "./useMainLayout";
 
-const { title, onGoBackClick } = useMainLayout();
+const { title, onGoBackClick, isMobile, topBarHeight,  categories } =
+  useMainLayout();
 </script>
 
 <template>
   <div class="relative flex flex-col w-full h-screen bg-gray-100">
-    <MobileTopBar :title="title" @go-back="onGoBackClick" />
-    <div class="fixed top-14 left-0 w-full h-[calc(100vh-56px)] overflow-auto">
+    <MobileTopBar :title="title" @go-back="onGoBackClick" v-if="isMobile" />
+
+    <DesktopTopBar :categories="categories" v-else />
+
+    <div
+      class="fixed left-0 w-full overflow-auto"
+      :style="{ top: topBarHeight, height: `calc(100vh - ${topBarHeight})` }"
+    >
       <div class="container mx-auto">
         <RouterView></RouterView>
       </div>
