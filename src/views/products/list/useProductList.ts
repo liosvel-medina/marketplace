@@ -1,7 +1,8 @@
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import type { Product } from '../../../api/interfaces'
 import api from '../../../api/fakeStoreApi'
 import { useProductStore } from '../../../store/productStore';
+import { useWindowSize } from '../../../composables/useWindowSize';
 
 interface ProductFav {
     product: Product;
@@ -61,10 +62,16 @@ export const useProductList = () => {
         else productStore.addFavorite(id)
     }
 
+    const { screens } = useWindowSize()
+
+    const isMobile = computed(() => {
+        return screens.value.xs || screens.value.sm
+    })
+
     onMounted(() => {
         loadProducts()
         loadCategories()
     })
 
-    return { isLoading, products, categories, filters, toggleFavorite, favImage }
+    return { isLoading, products, categories, filters, toggleFavorite, favImage, isMobile }
 }
