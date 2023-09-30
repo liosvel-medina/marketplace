@@ -11,7 +11,7 @@ import ProductTile from "../../../components/products/product-tile/ProductTile.v
 </script>
 
 <template>
-  <div class="flex flex-col bg-gray-100">
+  <div class="flex flex-col">
     <Loader
       class="fixed left-1/2 translate-x-[-50%]"
       :elevated="true"

@@ -27,6 +27,11 @@ export default {
     extend: {
       fontFamily: {
         'sans': 'Inter',
+      },
+      container: {
+        screens: {
+          'lg': '1180px'
+        }
       }
     },
   },

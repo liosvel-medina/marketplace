@@ -20,7 +20,7 @@ const { screens } = useWindowSize();
 
   <FiltersPanel :filters="filters" />
 
-  <div class="relative flex flex-col p-3 bg-gray-100">
+  <div class="relative flex flex-col p-3">
     <Loader
       class="fixed left-1/2 translate-x-[-50%]"
       :elevated="true"

@@ -11,7 +11,7 @@ const { categories } = defineProps<Props>();
     class="flex flex-col gap-4 pb-[18px] border-b-[1px] border-b-gray-300 w-full bg-white"
   >
     <label
-      class="flex gap-[6px] items-center h-10 mx-[15px] px-2 rounded bg-gray-100 border-[1px] border-gray-300 cursor-text"
+      class="flex gap-[6px] items-center h-10 mx-[15px] px-2 rounded border-[1px] border-gray-300 cursor-text"
     >
       <i class="material-icons-outlined text-[22px] text-gray-500">search</i>
 
