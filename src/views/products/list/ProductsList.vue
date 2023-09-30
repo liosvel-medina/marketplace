@@ -11,6 +11,7 @@ import CheckBox from "../../../components/shared/checkbox/CheckBox.vue";
 import RadioButton from "../../../components/shared/radio-button/RadioButton.vue";
 import CollapsiblePanel from "../../../components/products/collapsible-panel/CollapsiblePanel.vue";
 import { useWindowSize } from "../../../composables/useWindowSize";
+import MinMaxSlider from "../../../components/shared/min-max-slider/MinMaxSlider.vue";
 
 const {
   products,
@@ -107,6 +108,8 @@ const { screens } = useWindowSize();
         <div class="w-full h-[1px] bg-gray-300 mt-7"></div>
         <CollapsiblePanel title="Price range">
           <div class="flex flex-col mt-[9px]">
+            <MinMaxSlider/>
+            
             <div class="grid grid-cols-2 gap-[9px]">
               <label class="flex flex-col gap-[5px]">
                 <span>Min</span>
