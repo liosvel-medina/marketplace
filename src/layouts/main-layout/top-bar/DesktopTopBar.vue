@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import DesktopNavBar from "./DesktopNavBar.vue";
 
 interface Props {
   categories: string[];
@@ -15,7 +16,7 @@ defineProps<Props>();
     <div
       class="flex items-center w-full h-[86px] border-b-[1px] border-b-gray-300"
     >
-      <div class="flex items-center justify-between container mx-auto">
+      <div class="flex items-center justify-between container mx-auto px-[10px]">
         <img src="../../../assets/images/brand/logo-colored.svg" alt="" />
 
         <div
@@ -85,6 +86,8 @@ defineProps<Props>();
         </div>
       </div>
     </div>
+
+    <DesktopNavBar />
   </div>
 </template>
 
