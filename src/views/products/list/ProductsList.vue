@@ -105,6 +105,43 @@ const { screens } = useWindowSize();
         </CollapsiblePanel>
 
         <div class="w-full h-[1px] bg-gray-300 mt-7"></div>
+        <CollapsiblePanel title="Price range">
+          <div class="flex flex-col mt-[9px]">
+            <div class="grid grid-cols-2 gap-[9px]">
+              <label class="flex flex-col gap-[5px]">
+                <span>Min</span>
+
+                <input
+                  type="number"
+                  placeholder="0"
+                  class="h-10 bg-white border-[1px] border-gray-300 rounded-md px-[10px] outline-none"
+                  min="0"
+                  max="999999"
+                />
+              </label>
+
+              <label class="flex flex-col gap-[5px]">
+                <span>Max</span>
+
+                <input
+                  type="number"
+                  placeholder="999999"
+                  min="0"
+                  max="999999"
+                  class="h-10 bg-white border-[1px] border-gray-300 rounded-md px-[10px] outline-none"
+                />
+              </label>
+            </div>
+
+            <button
+              class="h-10 mt-2 bg-white border-[1px] border-gray-300 rounded-md text-primary font-medium custom-shadow"
+            >
+              Apply
+            </button>
+          </div>
+        </CollapsiblePanel>
+
+        <div class="w-full h-[1px] bg-gray-300 mt-7"></div>
         <CollapsiblePanel title="Condition">
           <div class="flex flex-col gap-[17px] mt-[9px]">
             <RadioButton
@@ -235,4 +272,8 @@ const { screens } = useWindowSize();
   </div>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.custom-shadow {
+  box-shadow: 0px 1px 2px 0px rgba(56, 56, 56, 0.08);
+}
+</style>
