@@ -55,11 +55,11 @@ const { screens } = useWindowSize();
     </div>
 
     <div
-      class="relative grid grid-cols-1 lg:grid-cols-[230px_1fr] gap-4 px-3"
+      class="relative grid grid-cols-1 lg:grid-cols-[230px_1fr] gap-7 px-3"
       v-else
     >
       <div
-        class="sticky top-0 flex flex-col w-[230px]"
+        class="flex flex-col w-[230px]"
         v-if="!(screens.xs || screens.sm || screens.md)"
       >
         <div class="w-full h-[1px] bg-gray-300"></div>
