@@ -10,6 +10,7 @@ import Card from "../../../components/shared/card/Card.vue";
 import CheckBox from "../../../components/shared/checkbox/CheckBox.vue";
 import RadioButton from "../../../components/shared/radio-button/RadioButton.vue";
 import CollapsiblePanel from "../../../components/products/collapsible-panel/CollapsiblePanel.vue";
+import { useWindowSize } from "../../../composables/useWindowSize";
 
 const {
   products,
@@ -24,6 +25,8 @@ const {
   conditions,
   selectedCondition,
 } = useProductList();
+
+const { screens } = useWindowSize();
 </script>
 
 <template>
@@ -51,8 +54,14 @@ const {
       />
     </div>
 
-    <div class="relative grid grid-cols-[230px_1fr] gap-4 px-3" v-else>
-      <div class="sticky top-0 flex flex-col w-[230px]">
+    <div
+      class="relative grid grid-cols-1 lg:grid-cols-[230px_1fr] gap-4 px-3"
+      v-else
+    >
+      <div
+        class="sticky top-0 flex flex-col w-[230px]"
+        v-if="!(screens.xs || screens.sm || screens.md)"
+      >
         <div class="w-full h-[1px] bg-gray-300"></div>
         <CollapsiblePanel title="Category">
           <div class="flex flex-col gap-[17px] mt-[9px]">
