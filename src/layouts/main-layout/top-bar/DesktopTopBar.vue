@@ -16,11 +16,22 @@ defineProps<Props>();
     <div
       class="flex items-center w-full h-[86px] border-b-[1px] border-b-gray-300"
     >
-      <div class="flex items-center justify-between container mx-auto px-[10px]">
-        <img src="../../../assets/images/brand/logo-colored.svg" alt="" />
+      <div
+        class="flex items-center gap-4 justify-between container mx-auto px-[10px]"
+      >
+        <img
+          src="../../../assets/images/brand/logo-colored.svg"
+          alt=""
+          class="hidden lg:inline"
+        />
+        <img
+          src="../../../assets/images/brand/logo-symbol.svg"
+          alt=""
+          class="lg:hidden"
+        />
 
         <div
-          class="flex w-[665px] h-10 border-2 border-primary rounded-md overflow-hidden"
+          class="flex-initial xl:flex-none flex xl:w-[665px] h-10 border-2 border-primary rounded-md overflow-hidden"
         >
           <input
             type="search"
@@ -60,28 +71,28 @@ defineProps<Props>();
             class="flex flex-col gap-[5px] items-center hover:text-primary transition-all"
           >
             <i class="material-icons-round text-[24px]">person</i>
-            <span class="text-xs font-normal">Profile</span>
+            <span class="text-xs font-normal hidden lg:inline">Profile</span>
           </button>
 
           <button
             class="flex flex-col gap-[5px] items-center hover:text-primary transition-all"
           >
             <i class="material-icons-round text-[24px]">message</i>
-            <span class="text-xs font-normal">Message</span>
+            <span class="text-xs font-normal hidden lg:inline">Message</span>
           </button>
 
           <button
             class="flex flex-col gap-[5px] items-center hover:text-primary transition-all"
           >
             <i class="material-icons-round text-[24px]">favorite</i>
-            <span class="text-xs font-normal">Orders</span>
+            <span class="text-xs font-normal hidden lg:inline">Orders</span>
           </button>
 
           <button
             class="flex flex-col gap-[5px] items-center hover:text-primary transition-all"
           >
             <i class="material-icons-round text-[24px]">shopping_cart</i>
-            <span class="text-xs font-normal">My cart</span>
+            <span class="text-xs font-normal hidden lg:inline">My cart</span>
           </button>
         </div>
       </div>
