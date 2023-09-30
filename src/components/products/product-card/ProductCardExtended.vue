@@ -30,7 +30,7 @@ defineEmits(["toggleFavorite"]);
       />
 
       <div class="flex-auto flex flex-col overflow-x-hidden">
-        <h3 class="text-base font-medium leading-[22px] mr-16 truncate">
+        <h3 class="text-base font-medium leading-[22px] mr-16">
           {{ name }}
         </h3>
 
