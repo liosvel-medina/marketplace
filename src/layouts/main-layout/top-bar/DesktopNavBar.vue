@@ -7,7 +7,7 @@
         <i class="material-icons text-2xl">menu</i>
       </button>
 
-      <div class="flex items-center gap-7 ml-[6px]">
+      <div class="flex items-center gap-6 lg:gap-7 ml-[6px]">
         <a href="#" class="font-medium leading-[22px]">All category</a>
         <a href="#" class="font-medium leading-[22px]">Hot offers</a>
         <a href="#" class="font-medium leading-[22px]">Gift boxes</a>
@@ -22,16 +22,16 @@
       <div class="flex-auto"></div>
 
       <a href="#" class="flex items-center font-medium leading-[22px]">
-        <span>English, USD</span>
+        <span><span class="hidden lg:inline">English, </span>USD</span>
         <img src="../../../assets/images/icons/ic_caret_down.svg" alt="" />
       </a>
 
-      <a href="#" class="flex items-center font-medium leading-[22px] ml-8">
+      <a href="#" class="flex items-center font-medium leading-[22px] ml-3 lg:ml-8">
         <span>Ship to</span>
         <img
           src="../../../assets/images/flags/de.png"
           alt=""
-          class="w-[22px] h-4 ml-[6px] mr-[9px]"
+          class="w-[22px] h-4 ml-[6px] mr-[9px] hidden lg:inline"
         />
         <img src="../../../assets/images/icons/ic_caret_down.svg" alt="" />
       </a>
