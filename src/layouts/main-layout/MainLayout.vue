@@ -4,9 +4,16 @@ import MobileTopBar from "./top-bar/MobileTopBar.vue";
 import DesktopTopBar from "./top-bar/DesktopTopBar.vue";
 import { useMainLayout } from "./useMainLayout";
 import Breadcrumbs from "./breadcrumbs/Breadcrumbs.vue";
+import NewsletterSubscription from "./newsletter-subscription/NewsletterSubscription.vue";
 
-const { title, onGoBackClick, isMobile, topBarHeight, categories } =
-  useMainLayout();
+const {
+  title,
+  onGoBackClick,
+  isMobile,
+  topBarHeight,
+  categories,
+  showNewsSubscription,
+} = useMainLayout();
 </script>
 
 <template>
@@ -28,6 +35,8 @@ const { title, onGoBackClick, isMobile, topBarHeight, categories } =
 
         <RouterView></RouterView>
       </div>
+
+      <NewsletterSubscription v-if="showNewsSubscription" />
     </div>
   </div>
 </template>
