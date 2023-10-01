@@ -23,6 +23,12 @@ export const useMainLayout = () => {
         return '142px'
     })
 
+    const isNewSubscriptionRoute = ref<boolean>(false)
+
+    const showNewsSubscription = computed(()=>{
+        return !isMobile.value && isNewSubscriptionRoute.value
+    })
+
     const initRouteParams = (name?: string) => {
         if (name == 'ProductList') {
             title.value = 'Products'
@@ -34,6 +40,8 @@ export const useMainLayout = () => {
                 router.back()
             }
         }
+
+        isNewSubscriptionRoute.value = ['ProductList'].includes(name || '')
     }
 
     router.beforeEach((to, _) => {
@@ -61,5 +69,5 @@ export const useMainLayout = () => {
     })
 
 
-    return { title, onGoBackClick, isLoading, isMobile, topBarHeight, categories }
+    return { title, onGoBackClick, isLoading, isMobile, topBarHeight, categories, showNewsSubscription }
 }
