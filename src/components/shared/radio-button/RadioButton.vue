@@ -1,30 +1,40 @@
 <script setup lang="ts">
+import { computed } from "vue";
+
 interface Props {
-  name: string;
+  name?: string;
   fieldId: string;
   label?: string;
-  selected?: boolean;
+  value?: any;
+  modelValue?: any;
 }
 
-defineProps<Props>();
-defineEmits(["update"]);
+const props = defineProps<Props>();
+const emit = defineEmits(["update:modelValue"]);
+
+const isChecked = computed(() => {
+  return props.value == props.modelValue;
+});
+
+const onChange = () => {
+  emit("update:modelValue", props.value);
+};
 </script>
 
 <template>
   <input
-    type="radio"
-    :name="name"
     :id="fieldId"
-    :checked="selected == true"
-    @change="$emit('update', $event?.target?.value || false)"
+    type="radio"
+    :checked="isChecked"
     class="hidden"
+    @change="onChange"
   />
 
   <label :for="fieldId" class="flex items-center cursor-pointer">
     <img
       src="../../../assets/images/controls/radiobutton-checked.svg"
       alt=""
-      v-if="selected == true"
+      v-if="isChecked"
     />
 
     <img
@@ -36,7 +46,7 @@ defineEmits(["update"]);
     <span v-if="label" class="flex-auto">{{ label }}</span>
 
     <template v-else>
-      <slot/>
+      <slot />
     </template>
   </label>
 </template>

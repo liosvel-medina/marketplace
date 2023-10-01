@@ -108,8 +108,8 @@ const { screens } = useWindowSize();
         <div class="w-full h-[1px] bg-gray-300 mt-7"></div>
         <CollapsiblePanel title="Price range">
           <div class="flex flex-col mt-[9px]">
-            <MinMaxSlider/>
-            
+            <MinMaxSlider />
+
             <div class="grid grid-cols-2 gap-[9px]">
               <label class="flex flex-col gap-[5px]">
                 <span>Min</span>
@@ -150,11 +150,10 @@ const { screens } = useWindowSize();
             <RadioButton
               v-for="item of conditions"
               :key="item"
-              name="filter-condition"
               :field-id="`radiobutton-${item}`"
               :label="item"
-              :selected="selectedCondition == item"
-              @update="selectedCondition = item"
+              :value="item"
+              v-model="selectedCondition"
             />
             <a href="#" class="text-primary">See all</a>
           </div>
