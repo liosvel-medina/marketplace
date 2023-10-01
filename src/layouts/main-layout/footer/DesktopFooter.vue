@@ -93,7 +93,9 @@ const navigation = ref<NavGroup[]>([
           </div>
         </div>
 
-        <div class="flex-auto grid grid-cols-3 lg:grid-cols-5 justify-between gap-y-4">
+        <div
+          class="flex-auto grid grid-cols-3 lg:grid-cols-5 justify-between gap-y-4"
+        >
           <div
             v-for="item of navigation"
             :key="`gr${item.title}`"
@@ -107,7 +109,11 @@ const navigation = ref<NavGroup[]>([
               v-for="link of item.links"
               :key="`link${item.title}${link.link}`"
             >
-              <a :href="link.link" v-if="link.title" class="text-gray-500 mb-[3px] last:mb-0">
+              <a
+                :href="link.link"
+                v-if="link.title"
+                class="text-gray-500 mb-[3px] last:mb-0"
+              >
                 <span>{{ link.title }}</span>
               </a>
 
@@ -117,6 +123,22 @@ const navigation = ref<NavGroup[]>([
             </template>
           </div>
         </div>
+      </div>
+    </div>
+
+    <div class="bg-gray-200">
+      <div class="flex items-center justify-between container h-[68px] mx-auto px-3">
+        <span class="text-gray-600">© 2023 Ecommerce.</span>
+
+        <button class="flex items-center">
+          <img
+            src="../../../assets/images/flags/us.png"
+            alt=""
+            class="w-6 h-[17px]"
+          />
+          <span class="text-600 ml-[6px]">English</span>
+          <i class="material-icons">expand_less</i>
+        </button>
       </div>
     </div>
   </footer>
