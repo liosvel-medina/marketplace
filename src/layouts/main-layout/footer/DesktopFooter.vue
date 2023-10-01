@@ -66,7 +66,7 @@ const navigation = ref<NavGroup[]>([
 <template>
   <footer class="flex flex-col">
     <div class="bg-white border-b-[1px] border-gray-300">
-      <div class="flex container mx-auto px-3 pt-10 pb-[59px]">
+      <div class="flex gap-[61px] container mx-auto px-3 pt-10 pb-[59px]">
         <div class="flex flex-col items-start gap-[15px] w-[276px]">
           <img src="../../../assets/images/brand/logo-colored.svg" alt="" />
 
@@ -93,22 +93,28 @@ const navigation = ref<NavGroup[]>([
           </div>
         </div>
 
-        <div class="flex">
+        <div class="flex-auto grid grid-cols-3 lg:grid-cols-5 justify-between gap-y-4">
           <div
             v-for="item of navigation"
             :key="`gr${item.title}`"
             class="flex flex-col"
           >
-            <h3>{{ item.title }}</h3>
+            <h3 class="font-medium leading-[22px] mb-[10px]">
+              {{ item.title }}
+            </h3>
 
-            <a
+            <template
               v-for="link of item.links"
               :key="`link${item.title}${link.link}`"
-              :href="link.link"
             >
-              <span v-if="link.title">{{ link.title }}</span>
-              <img :src="link.image" alt="" v-else />
-            </a>
+              <a :href="link.link" v-if="link.title" class="text-gray-500 mb-[3px] last:mb-0">
+                <span>{{ link.title }}</span>
+              </a>
+
+              <a :href="link.link" v-else class="mt-2 first-of-type:mt-[5px]">
+                <img :src="link.image" alt="" />
+              </a>
+            </template>
           </div>
         </div>
       </div>
