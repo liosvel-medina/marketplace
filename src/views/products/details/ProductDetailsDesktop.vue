@@ -4,7 +4,8 @@ import { useProductDetails } from "./useProductDetails";
 import Loader from "../../../components/shared/loader/Loader.vue";
 import RateBar from "../../../components/shared/rate-bar/RateBar.vue";
 
-const { product, isLoading, images, selectedImage } = useProductDetails();
+const { product, isLoading, images, selectedImage, favImage, toggleFavorite } =
+  useProductDetails();
 </script>
 
 <template>
@@ -17,10 +18,12 @@ const { product, isLoading, images, selectedImage } = useProductDetails();
 
     <div class="flex flex-col px-3 pb-3" v-else>
       <Card>
-        <div class="flex pt-5 pr-[22px] pb-11 pl-[19px]">
+        <div
+          class="grid grid-cols-2 lg:grid-cols-[480px_1fr] xl:grid-cols-[380px_1fr_280px] pt-5 pr-[22px] pb-11 pl-[19px] gap-y-7"
+        >
           <div class="flex flex-col gap-5">
             <Card>
-              <div class="w-[380px] h-[380px] p-4">
+              <div class="w-full aspect-square p-4">
                 <img
                   :src="images[selectedImage]"
                   alt="preview"
@@ -46,7 +49,9 @@ const { product, isLoading, images, selectedImage } = useProductDetails();
             </div>
           </div>
 
-          <div class="flex-auto flex flex-col ml-[22px]">
+          <div
+            class="order-1 xl:order-none col-span-2 xl:col-span-1 flex-auto flex flex-col xl:ml-[22px]"
+          >
             <div class="flex items-center text-green gap-[2px]">
               <i class="material-icons">check</i>
               <span>In stock</span>
@@ -102,9 +107,129 @@ const { product, isLoading, images, selectedImage } = useProductDetails();
               </div>
             </div>
 
-            <div class="flex flex-col mt-[21px]">
-                
-            </div>
+            <table class="mt-[21px]">
+              <tr class="border-b-[1px] border-gray-300">
+                <th class="pb-4 text-left text-gray-500 font-normal pr-[27px]">
+                  Price:
+                </th>
+                <td class="pb-4 text-600">Negotiable</td>
+              </tr>
+
+              <tr>
+                <th class="py-4 text-left text-gray-500 font-normal pr-[27px]">
+                  Type:
+                </th>
+                <td class="py-4 text-600">Classic shoes</td>
+              </tr>
+
+              <tr>
+                <th class="pb-4 text-left text-gray-500 font-normal pr-[27px]">
+                  Material:
+                </th>
+                <td class="pb-4 text-600">Plastic material</td>
+              </tr>
+
+              <tr class="border-b-[1px] border-gray-300">
+                <th class="pb-4 text-left text-gray-500 font-normal pr-[27px]">
+                  Design:
+                </th>
+                <td class="pb-4 text-600">Modern nice</td>
+              </tr>
+
+              <tr>
+                <th class="py-4 text-left text-gray-500 font-normal pr-[27px]">
+                  Customization:
+                </th>
+                <td class="py-4 text-600">
+                  Customized logo and design custom packages
+                </td>
+              </tr>
+
+              <tr>
+                <th class="pb-4 text-left text-gray-500 font-normal pr-[27px]">
+                  Protection:
+                </th>
+                <td class="pb-4 text-600">Refund Policy</td>
+              </tr>
+
+              <tr class="border-b-[1px] border-gray-300">
+                <th class="pb-4 text-left text-gray-500 font-normal pr-[27px]">
+                  Warranty:
+                </th>
+                <td class="pb-4 text-600">2 years full warranty</td>
+              </tr>
+            </table>
+          </div>
+
+          <div class="flex flex-col ml-[27px]">
+            <Card class="custom-shadow">
+              <div class="flex flex-col pt-[19px] px-4 pb-[21px]">
+                <div class="flex gap-[11px]">
+                  <div
+                    class="flex items-center justify-center w-12 h-12 rounded bg-[#C6F3F1] text-[28px] text-[#4CA7A799] font-semibold"
+                  >
+                    <span>R</span>
+                  </div>
+
+                  <div class="flex flex-col">
+                    <span>Supplier</span>
+                    <span>Guanjoi Trading LLC</span>
+                  </div>
+                </div>
+
+                <div class="w-full h-[1px] bg-gray-300 mt-5 mb-[13px]"></div>
+
+                <div class="flex flex-col gap-2">
+                  <div class="flex items-center gap-[17px]">
+                    <img
+                      src="../../../assets/images/flags/de.png"
+                      alt="DE"
+                      class="w-[21px] h-[15px]"
+                    />
+
+                    <span class="text-gray-500">Germany, Berlin</span>
+                  </div>
+
+                  <div class="flex items-center gap-[17px]">
+                    <i class="material-icons-outlined text-xl text-gray-500"
+                      >verified_user</i
+                    >
+
+                    <span class="text-gray-500">Verified Seller</span>
+                  </div>
+
+                  <div class="flex items-center gap-[17px]">
+                    <i class="material-icons-outlined text-xl text-gray-500"
+                      >language</i
+                    >
+
+                    <span class="text-gray-500">Worldwide shipping</span>
+                  </div>
+                </div>
+
+                <div class="flex flex-col gap-2 mt-7">
+                  <button
+                    class="flex items-center justify-center rounded-md h-10 bg-primary text-white font-medium"
+                  >
+                    Send inquiry
+                  </button>
+
+                  <button
+                    class="flex items-center justify-center rounded-md h-10 bg-white border-[1px] border-gray-300 text-primary font-medium"
+                  >
+                    Seller’s profile
+                  </button>
+                </div>
+              </div>
+            </Card>
+
+            <button
+              class="flex items-center justify-center gap-2 rounded-md h-10 bg-white text-primary font-medium mt-4"
+              @click="toggleFavorite"
+            >
+              <i class="material-icons">{{ favImage() }}</i>
+              <span>Save for later</span>
+            </button>
           </div>
         </div>
       </Card>
@@ -115,5 +240,9 @@ const { product, isLoading, images, selectedImage } = useProductDetails();
 <style scoped lang="scss">
 .selected {
   @apply border-gray-600;
+}
+
+.custom-shadow {
+  box-shadow: 0px 1px 2px 0px rgba(56, 56, 56, 0.08);
 }
 </style>
