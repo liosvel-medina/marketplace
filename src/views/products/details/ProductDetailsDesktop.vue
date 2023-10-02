@@ -2,6 +2,7 @@
 import { useProductDetails } from "./useProductDetails";
 import Loader from "../../../components/shared/loader/Loader.vue";
 import MainInfoCard from "./desktop/MainInfoCard.vue";
+import SecondaryInfoCard from "./desktop/SecondaryInfoCard.vue";
 
 const { product, images, selectedImage, favImage, toggleFavorite, isLoading } =
   useProductDetails();
@@ -24,6 +25,10 @@ const { product, images, selectedImage, favImage, toggleFavorite, isLoading } =
         @selected-image="(newValue:number)=>{selectedImage = newValue}"
         @toggle-favorite="toggleFavorite"
       />
+
+      <div class="grid grid-cols-[1fr_280px] mt-5">
+        <SecondaryInfoCard />
+      </div>
     </div>
   </div>
 </template>
