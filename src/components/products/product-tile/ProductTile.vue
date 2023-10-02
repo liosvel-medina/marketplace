@@ -30,10 +30,7 @@ defineProps<Props>();
         <h2 class="title-h6 font-medium">${{ price.toFixed(2) }}</h2>
 
         <div class="text-[13px] text-gray-500">
-          {{ name }} Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Eveniet, velit dicta nulla pariatur reiciendis, cumque commodi aperiam
-          et magnam, tempora tenetur placeat harum sint eos vero itaque
-          temporibus quaerat in.
+          {{ name }}
         </div>
       </div>
     </RouterLink>
