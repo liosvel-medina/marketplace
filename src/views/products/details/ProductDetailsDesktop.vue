@@ -3,7 +3,8 @@ import { useProductDetails } from "./useProductDetails";
 import Loader from "../../../components/shared/loader/Loader.vue";
 import MainInfoCard from "./desktop/MainInfoCard.vue";
 
-const { isLoading } = useProductDetails();
+const { product, images, selectedImage, favImage, toggleFavorite, isLoading } =
+  useProductDetails();
 </script>
 
 <template>
@@ -15,17 +16,16 @@ const { isLoading } = useProductDetails();
     />
 
     <div class="flex flex-col px-3 pb-3" v-else>
-        <MainInfoCard/>
+      <MainInfoCard
+        :product="product"
+        :images="images"
+        :selected-image="selectedImage"
+        :fav-image="favImage()"
+        @selected-image="(newValue:number)=>{selectedImage = newValue}"
+        @toggle-favorite="toggleFavorite"
+      />
     </div>
   </div>
 </template>
 
-<style scoped lang="scss">
-.selected {
-  @apply border-gray-600;
-}
-
-.custom-shadow {
-  box-shadow: 0px 1px 2px 0px rgba(56, 56, 56, 0.08);
-}
-</style>
+<style scoped lang="scss"></style>

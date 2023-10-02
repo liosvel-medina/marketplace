@@ -1,10 +1,23 @@
 <script setup lang="ts">
 import Card from "../../../../components/shared/card/Card.vue";
-import { useProductDetails } from "../useProductDetails";
 import RateBar from "../../../../components/shared/rate-bar/RateBar.vue";
+import { Product } from "../../../../api/interfaces";
 
-const { product, images, selectedImage, favImage, toggleFavorite } =
-  useProductDetails();
+interface Props {
+  product?: Product;
+  images?: string[];
+  selectedImage?: number;
+  favImage: string;
+}
+
+defineProps<Props>();
+const emit = defineEmits(["selectedImage", "toggleFavorite"]);
+
+const selectImage = (index: number) => {
+  console.log("selected image", index);
+
+  emit("selectedImage", index);
+};
 </script>
 
 <template>
@@ -27,9 +40,10 @@ const { product, images, selectedImage, favImage, toggleFavorite } =
         <div class="flex items-center gap-[9px] h-14">
           <button
             v-for="(item, index) of images"
+            :key="`imagepreview${index}`"
             class="h-full aspect-square border-gray-300 border-[1px] rounded overflow-hidden p-1"
             :class="{ selected: selectedImage == index }"
-            @click="$emit('selectImage', index)"
+            @click="selectImage(index)"
           >
             <img
               :src="item"
@@ -214,9 +228,9 @@ const { product, images, selectedImage, favImage, toggleFavorite } =
 
         <button
           class="flex items-center justify-center gap-2 rounded-md h-10 bg-white text-primary font-medium mt-4"
-          @click="toggleFavorite"
+          @click="$emit('toggleFavorite')"
         >
-          <i class="material-icons">{{ favImage() }}</i>
+          <i class="material-icons">{{ favImage }}</i>
           <span>Save for later</span>
         </button>
       </div>
@@ -224,4 +238,12 @@ const { product, images, selectedImage, favImage, toggleFavorite } =
   </Card>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.selected {
+  @apply border-gray-600;
+}
+
+.custom-shadow {
+  box-shadow: 0px 1px 2px 0px rgba(56, 56, 56, 0.08);
+}
+</style>
