@@ -14,6 +14,9 @@ export const useProductDetails = () => {
 
     const productStore = useProductStore();
 
+    const images = ref<string[]>()
+    const selectedImage = ref<number>()
+
     const isFavorite = () => {
         return productStore.favorites.includes(product?.value?.id || 0)
     }
@@ -44,7 +47,13 @@ export const useProductDetails = () => {
             const res = await api.get<Product>(`products/${id}`)
             product.value = res.data
 
-            await loadSimilarProducts(product.value.category)
+            const img = product.value.image
+            images.value = [1, 2, 3, 4, 5, 6].map((_) => {
+                return img
+            })
+            selectedImage.value = 0
+
+            loadSimilarProducts(product.value.category)
         }
         catch (ex) {
             console.error(ex);
@@ -54,8 +63,8 @@ export const useProductDetails = () => {
         isLoading.value = false
     }
 
-    const {screens} = useWindowSize();
-    const isMobile = computed(()=>{
+    const { screens } = useWindowSize();
+    const isMobile = computed(() => {
         return screens.value.xs || screens.value.sm;
     })
 
@@ -69,5 +78,5 @@ export const useProductDetails = () => {
         }
     })
 
-    return { isLoading, product, similarProducts, favImage, toggleFavorite, isMobile }
+    return { isLoading, product, similarProducts, favImage, toggleFavorite, isMobile, images, selectedImage }
 }
