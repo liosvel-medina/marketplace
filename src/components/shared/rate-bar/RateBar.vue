@@ -6,12 +6,12 @@ interface Props {
   rate: number;
 }
 
-const { rate } = defineProps<Props>();
+const props = defineProps<Props>();
 
 const { getAsset } = useAssets();
 
 const barImage = computed(() => {
-  const stars = Math.trunc(rate);
+  const stars = Math.trunc(props.rate);
   return getAsset(`images/rate-bar/rate-bar-${stars}.svg`);
 });
 </script>
