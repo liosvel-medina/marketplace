@@ -5,6 +5,7 @@ import DesktopTopBar from "./top-bar/DesktopTopBar.vue";
 import { useMainLayout } from "./useMainLayout";
 import Breadcrumbs from "./breadcrumbs/Breadcrumbs.vue";
 import NewsletterSubscription from "./newsletter-subscription/NewsletterSubscription.vue";
+import DesktopFooter from "./footer/DesktopFooter.vue";
 
 const {
   title,
@@ -37,6 +38,8 @@ const {
       </div>
 
       <NewsletterSubscription v-if="showNewsSubscription" />
+
+      <DesktopFooter v-if="!isMobile"/>
     </div>
   </div>
 </template>

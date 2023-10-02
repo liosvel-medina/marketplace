@@ -33,7 +33,7 @@ const { screens } = useWindowSize();
 
   <div class="relative flex flex-col">
     <Loader
-      class="fixed left-1/2 translate-x-[-50%]"
+      class="fixed left-1/2 z-10 translate-x-[-50%]"
       :elevated="true"
       v-if="isLoading"
     />
@@ -57,7 +57,7 @@ const { screens } = useWindowSize();
     >
       <SidePanel v-if="!(screens.xs || screens.sm || screens.md)" />
 
-      <div class="flex-auto flex flex-col">
+      <div class="flex-auto flex flex-col" v-if="!isLoading">
         <Card>
           <div class="flex items-center w-full h-[62px] pl-[19px] pr-[10px]">
             <div>
