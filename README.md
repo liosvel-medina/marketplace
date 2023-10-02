@@ -6,6 +6,8 @@ This template should help get you started developing with Vue 3 and TypeScript i
 
 - [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
 
+- [Node.js](https://nodejs.org/en), for recommended download (v16.18.1) [click here](https://nodejs.org/dist/v16.18.1/) and select your platform
+
 ## Type Support For `.vue` Imports in TS
 
 TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
@@ -16,3 +18,19 @@ If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has a
    1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
    2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
 2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+
+## Setup the project
+
+After cloning the project, point the console it's root folder and run this command:
+
+```
+npm install
+```
+
+Then `npm` will install dependencies, to run the project, use this command
+
+```
+npm run dev
+```
+
+And you will be able to see the project working at http://localhost:5173/
