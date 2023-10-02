@@ -4,6 +4,7 @@ import Loader from "../../../components/shared/loader/Loader.vue";
 import MainInfoCard from "./desktop/MainInfoCard.vue";
 import SecondaryInfoCard from "./desktop/SecondaryInfoCard.vue";
 import Card from "../../../components/shared/card/Card.vue";
+import ProductTileV2 from "../../../components/products/product-tile/ProductTileV2.vue";
 
 const {
   product,
@@ -35,7 +36,7 @@ const {
       />
 
       <div class="grid grid-cols-[1fr_280px] gap-5 mt-5">
-        <SecondaryInfoCard />
+        <SecondaryInfoCard class="custom-shadow" />
 
         <Card class="self-start">
           <div class="flex flex-col gap-[14px] pt-5 px-4 pb-9">
@@ -72,8 +73,31 @@ const {
           </div>
         </Card>
       </div>
+
+      <Card class="mt-5">
+        <div class="flex flex-col gap-[15px] pt-5 px-[22px] pb-[35px]">
+          <h3 class="title-h4">Related products</h3>
+
+          <div class="my-[10px] mx-[-22px] overflow-auto">
+            <div class="flex gap-2 w-fit mx-[22px]">
+              <ProductTileV2
+                :id="item.id"
+                :name="item.title"
+                :image="item.image"
+                :price="item.price"
+                v-for="item of similarProducts"
+                :key="item.id"
+              />
+            </div>
+          </div>
+        </div>
+      </Card>
     </div>
   </div>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.custom-shadow {
+  filter: drop-shadow(0px 1px 3px rgba(56, 56, 56, 0.1));
+}
+</style>
