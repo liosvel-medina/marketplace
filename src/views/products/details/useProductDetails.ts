@@ -1,8 +1,9 @@
 import { useRoute, onBeforeRouteUpdate } from "vue-router"
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import { Product } from "../../../api/interfaces";
 import api from '../../../api/fakeStoreApi'
 import { useProductStore } from "../../../store/productStore";
+import { useWindowSize } from "../../../composables/useWindowSize";
 
 export const useProductDetails = () => {
     const route = useRoute()
@@ -53,6 +54,11 @@ export const useProductDetails = () => {
         isLoading.value = false
     }
 
+    const {screens} = useWindowSize();
+    const isMobile = computed(()=>{
+        return screens.value.xs || screens.value.sm;
+    })
+
     onMounted(() => {
         loadProduct(Number(route.params.id))
     })
@@ -63,5 +69,5 @@ export const useProductDetails = () => {
         }
     })
 
-    return { isLoading, product, similarProducts, favImage, toggleFavorite }
+    return { isLoading, product, similarProducts, favImage, toggleFavorite, isMobile }
 }
