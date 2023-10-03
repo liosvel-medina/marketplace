@@ -36,7 +36,7 @@ const {
       />
 
       <div class="grid grid-cols-[1fr_280px] gap-5 mt-5">
-        <SecondaryInfoCard class="custom-shadow" />
+        <SecondaryInfoCard :product="product" class="custom-shadow" />
 
         <Card class="self-start">
           <div class="flex flex-col gap-[14px] pt-5 px-4 pb-9">

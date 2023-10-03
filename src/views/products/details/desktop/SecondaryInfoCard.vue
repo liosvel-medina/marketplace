@@ -1,7 +1,14 @@
 <script setup lang="ts">
+import { Product } from "../../../../api/interfaces";
 import Card from "../../../../components/shared/card/Card.vue";
 import TabView from "../../../../components/shared/tab-view/TabView.vue";
 import { ref } from "vue";
+
+interface Props {
+  product?: Product;
+}
+
+defineProps<Props>();
 
 const tabs = ref(["Description", "Reviews", "Shipping", "About seller"]);
 const selectedTabIndex = ref(0);
@@ -17,19 +24,10 @@ const selectedTabIndex = ref(0);
       />
 
       <div class="flex flex-col pt-[18px] px-5 pb-[29px] text-gray-600">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-          enim ad minim veniam, Quis nostrud exercitation ullamco laboris nisi
-          ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur.
+        <p v-if="product">
+          {{ product.description }}
         </p>
+        <p v-else>No description</p>
 
         <table class="info-table">
           <tr>
